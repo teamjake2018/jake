@@ -35,5 +35,9 @@
   "bugs": {
     "url": "https://github.com/teamjake2018/jake/issues"
   },
-  "homepage": "https://github.com/teamjake2018/jake#readme"
+  "homepage": "https://github.com/teamjake2018/jake#readme",
+  "devDependencies": {
+    "webpack": "^4.24.0",
+    "webpack-cli": "^3.1.2"
+  }
 }
