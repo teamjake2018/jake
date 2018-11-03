@@ -1,0 +1,20 @@
+header {
+  padding: 15px 25px;
+  background-color: #13e28c;
+  box-shadow: 0 0 15px 1px rgba(0,0,0,.5);
+}
+
+header form input[type="text"] {
+  border: none;
+  padding: 5px 10px;
+}
+
+header form input[type="file"] {
+  border: none;
+  padding: 10px 0;
+}
+
+header form input[type="submit"] {
+  border: none;
+  padding: 5px 10px;
+}
