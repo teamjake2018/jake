@@ -27,7 +27,7 @@ app.models.initModel({id: Clarifai.GENERAL_MODEL, version: "aa7f35c01e0642fda5cf
 
 console.log('tags outside: ', tagsArr);
 
-class Tags extends Component {
+export default class Tags extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -59,12 +59,12 @@ class TagsList extends Component {
 }
 }
 
-const TagsItem = (props) => {
+class TagsItem extends Component {
+    render(){
     return (
         <div className='tags-item'>
-        {props.elm}
+        {this.props.elm}
         </div>
     );
 }
-
-export default Tags;
+};

@@ -21,6 +21,7 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        Tags go here
         <Tags/>
       </div>
     );
