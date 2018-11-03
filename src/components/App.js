@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../static/logo.svg';
 import '../styles/App.css';
-
-const Clarifai = require('clarifai');
-
-const app = new Clarifai.App({
-  apiKey: 'b3300620696b4d859b5a0fb073f83bc4'
-});
-
+import Tags from './Tags.js';
 
 class App extends Component {
   render() {
@@ -27,6 +21,7 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <Tags/>
       </div>
     );
   }
