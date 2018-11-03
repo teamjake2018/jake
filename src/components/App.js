@@ -4,22 +4,21 @@ import '../styles/App.css';
 import Tags from './Tags.js';
 
 class App extends Component {
+
+  searchHandler = (event) => {
+    event.preventDefault();
+    console.log("Searching!");
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <header>
+          <h1>Scavenger Hunt!</h1>
+          <form onSubmit={this.searchHandler}>
+            <input type="file" /><input type="submit" value="Search with file" /><br/>
+            <input type="text" placeholder="Image URL here!" /><input type="submit" value="Search with URL" />
+          </form>
         </header>
         <Tags/>
       </div>
