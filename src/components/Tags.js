@@ -4,7 +4,7 @@ const Clarifai = require("clarifai");
 
 // Clarifai instance
 const app = new Clarifai.App({
-  apiKey: "b3300620696b4d859b5a0fb073f83bc4"
+  apiKey: process.env.REACT_APP_API_KEY
 });
 
 // Naughty global variable - remove later
