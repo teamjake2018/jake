@@ -4,7 +4,6 @@ import './App.css';
 import Clarifai from 'clarifai';
 
 var api_key = process.env.REACT_APP_API_KEY
-console.log("api key: " + api_key)
 
 var app = new Clarifai.App({
   apiKey: api_key
