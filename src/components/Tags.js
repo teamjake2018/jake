@@ -47,14 +47,16 @@ class Tags extends Component {
     }
 }
 
-const TagsList = (props) => {
+class TagsList extends Component {
+    render(){
     return (
-        props.tags.map( (elm, i) => 
+        this.props.tags.map( (elm, i) => 
             <TagsItem
                 elm={elm}
                 key={i} />
         )
     );
+}
 }
 
 const TagsItem = (props) => {
