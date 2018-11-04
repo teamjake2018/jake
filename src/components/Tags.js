@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Checker from './Checker.js';
 
 // const Clarifai = require("clarifai");
 
