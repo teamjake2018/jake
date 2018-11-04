@@ -1,12 +1,32 @@
+:root { --mintGreen: #13e28c; }
+
 header {
   padding: 15px 25px;
+  background-color: var(--mintGreen);
   background-color: #13e28c;
   box-shadow: 0 0 15px 1px rgba(0,0,0,.5);
+}
+
+header h1 { display: inline-block; }
+
+.App main {
+  margin: 0 auto;
+  width: 95%;
+  font-size: 1.5rem;
 }
 
 header form input[type="text"] {
   border: none;
   padding: 5px 10px;
+  margin-left: 39px;
+}
+
+@media screen and (max-width: 500px) {
+  header form input[type="text"] {
+    display: block;
+    margin-top: 10px;
+    margin-left: 0;
+  }
 }
 
 header form input[type="file"] {
@@ -18,3 +38,32 @@ header form input[type="submit"] {
   border: none;
   padding: 5px 10px;
 }
+
+#searched-image img {
+  display: block;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  #searched-image img {
+    width: 50%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #searched-image img {
+    width: 80%;
+    height: auto;
+  }
+}
+
+footer {
+  width: 100%;
+  background-color: var(--mintGreen);
+  background-color: #13e28c;
+  position: absolute;
+  bottom: 0;
+}
+
+footer p { text-align: center; }
