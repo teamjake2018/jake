@@ -36,10 +36,13 @@ class App extends Component {
     this.setState((state) => ({
       goal: state.goals[choice]
     }))
-    /*this.setState((state) => ({
-      goals: state.goals.slice(0, choice -1).slice(choice + 1, state.goals.length)
-    }))*/
-    console.log(this.state.goals)
+    setTimeout(() => {
+      this.setState((state) => ({
+        goals: this.state.goals.slice(0, choice).concat(this.state.goals.slice(choice + 1))
+      }))
+      console.log(this.state.goals)
+    }, 2000)
+
   }
 
   searchHandler = (event) => {
