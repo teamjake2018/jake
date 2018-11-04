@@ -34,7 +34,7 @@ export default class Checker extends React.Component{
         return(
             <div id="checker">
             <button onClick={this.checker}>CHECK</button>
-            {this.state.displayMessage}
+            <p>{this.state.displayMessage}</p>
             </div>
         )
     }
