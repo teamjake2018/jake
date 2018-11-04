@@ -24,9 +24,9 @@ class Tags extends Component {
 
   apiCall = () => {
     console.log("called")
-    app.workflow.predict('trainedTibetanSpaniel', "https://samples.clarifai.com/metro-north.jpg").then(response => {
-      console.log(response)
-      var concepts = response["outputs"][0]["data"]["concepts"];
+    app.workflow.predict('trainedTibetanSpaniel', "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12223538/Tibetan-Spaniel-On-White-01.jpg").then(response => {
+      console.log(response) 
+      var concepts = response.results[0].outputs[0].data.concepts[0].name;
       console.log({ concepts });
       const names = concepts.map(elm => elm.name);
       console.log({ names });
