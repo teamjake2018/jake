@@ -7,7 +7,7 @@ class App extends Component {
 
   searchHandler = (event) => {
     event.preventDefault();
-    console.log("Searching!");
+    console.log(this.urlInput.value);
   }
 
   render() {
@@ -17,7 +17,7 @@ class App extends Component {
           <h1>Scavenger Hunt!</h1>
           <form onSubmit={this.searchHandler}>
             <input type="file" /><input type="submit" value="Search with file" /><br/>
-            <input type="text" placeholder="Image URL here!" /><input type="submit" value="Search with URL" />
+            <input type="text" placeholder="Image URL here!" ref={(input) => this.urlInput = input} /><input type="submit" value="Search with URL" />
           </form>
         </header>
         <Tags/>
