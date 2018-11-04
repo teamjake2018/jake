@@ -8,40 +8,6 @@ import React, { Component } from "react";
 // });
 
 class Tags extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     tags: []
-  //   };
-  // }
-
-  // apiCall = () => {
-  //   app.models
-  //     .initModel({
-  //       id: Clarifai.GENERAL_MODEL,
-  //       version: "aa7f35c01e0642fda5cf400f543e7c40"
-  //     })
-  //     .then(generalModel => {
-  //       return generalModel.predict(
-  //         "https://samples.clarifai.com/metro-north.jpg"
-  //       );
-  //     })
-  //     .then(response => {
-  //       var concepts = response["outputs"][0]["data"]["concepts"];
-  //       console.log({ concepts });
-  //       const names = concepts.map(elm => elm.name);
-  //       console.log({ names });
-  //       return names;
-  //     })
-  //     .then( names => {
-  //       this.setState({ tags: names });
-  //     });
-  // };
-
-  // componentDidMount() {
-  //   this.apiCall();
-  // }
-
   render() {
     return (
       <div className="tags-container">

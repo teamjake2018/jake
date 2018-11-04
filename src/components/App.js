@@ -22,9 +22,14 @@ class App extends Component {
 
   searchHandler = (event) => {
     event.preventDefault();
-    console.log('url: ', event.target.value);
-    this.setState({ url: event.target.value });
     console.log("Searching!");
+    console.log('url: ', event.target.value);
+
+    this.setState({ url: event.target.value });
+
+    this.apiCall();
+
+    event.currentTarget.reset();
   }
 
   apiCall = () => {
@@ -50,9 +55,9 @@ class App extends Component {
       });
   };
 
-  componentDidMount() {
-    this.apiCall();
-  }
+  // componentDidMount() {
+  //   this.apiCall();
+  // }
 
   render() {
     return (
