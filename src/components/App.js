@@ -31,6 +31,24 @@ class App extends Component {
   }
 
   apiCall = () => {
+    console.log("called")
+    app.workflow.predict('trainedTibetanSpaniel', 
+    "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12223538/Tibetan-Spaniel-On-White-01.jpg")
+    .then(response => {
+      console.log(response) 
+      var concepts = response.results[0].outputs[0].data.concepts
+      var moreConcepts = concepts.concat(response.results[0].outputs[1].data.concepts);
+      console.log({ moreConcepts });
+      const names = moreConcepts.map(elm => elm.name); 
+      console.log({ names });
+      return names;
+    })
+    .then( names => {
+      this.setState({ tags: names });
+    })};
+
+  /* This is the old API call and is being kept around just incase I missed something in my manual merge. But it should be unncessary now.
+  apiCall = () => {
     app.models
       .initModel({
         id: Clarifai.GENERAL_MODEL,
@@ -51,7 +69,7 @@ class App extends Component {
       .then( names => {
         this.setState({ tags: names });
       });
-  };
+  };*/
 
   // componentDidMount() {
   //   this.apiCall();
