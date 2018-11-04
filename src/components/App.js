@@ -18,6 +18,7 @@ class App extends Component {
       tags: [],
       goal: "tibetan spaniel",
       searching: false,
+      searched: false,
       searchingMessage: "Hold on! I'm thinking!"
     }
   }
@@ -99,7 +100,8 @@ class App extends Component {
       this.setState({ tags: names });
     }).then(data => this.setState({
       searching: false,
-      url: ''
+      url: '',
+      searched: true
     }))};
 
     searchMessage = () => {
@@ -125,7 +127,7 @@ class App extends Component {
           </form>
         </header>
         {this.state.searching && <span>{this.state.searchingMessage}</span>}
-        <Checker tags={this.state.tags} goal={this.state.goal}/>
+        {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal}/>}
       </div>
     );
   }
