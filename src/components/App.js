@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: 'https://samples.clarifai.com/metro-north.jpg',
+      url: '',
       tags: [],
       goal: "tibetan spaniel"
     }
@@ -23,18 +23,23 @@ class App extends Component {
 
   searchHandler = (event) => {
     event.preventDefault();
-    console.log(this.urlInput.value);
-    this.setState({ url: this.urlInput.value });
-
-    this.apiCall();
+    console.log("urlInput.value:" + this.urlInput.value);
+    this.setState({ url: this.urlInput.value })
+    
+    /*this.apiCall();*/
 
     event.currentTarget.reset();
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if (this.state.url !== prevState.url)
+    this.apiCall();
   }
 
   apiCall = () => {
     console.log("called")
     app.workflow.predict('trainedTibetanSpaniel', 
-    "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12223538/Tibetan-Spaniel-On-White-01.jpg")
+    this.state.url)
     .then(response => {
       console.log(response) 
       var concepts = response.results[0].outputs[0].data.concepts
