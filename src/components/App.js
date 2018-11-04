@@ -16,12 +16,30 @@ class App extends Component {
     this.state = {
       url: '',
       tags: [],
-      goal: "tibetan spaniel",
+      goals: ["library", "park", "rabbit", "restaurant", "skyscraper", "strawberry", "tibetan spaniel"],
+      goal: "",
       searching: false,
       searched: false,
       searchingMessage: "Hold on! I'm thinking!",
       image:""
     }
+    this.randomGoal = this.randomGoal.bind(this)
+  }
+
+  componentDidMount(){
+    this.randomGoal(this.state.goals.length)
+  }
+
+  randomGoal(remainingGoals){
+    console.log("new goal")
+    let choice = (Math.floor(Math.random() * remainingGoals));
+    this.setState((state) => ({
+      goal: state.goals[choice]
+    }))
+    /*this.setState((state) => ({
+      goals: state.goals.slice(0, choice -1).slice(choice + 1, state.goals.length)
+    }))*/
+    console.log(this.state.goals)
   }
 
   searchHandler = (event) => {
@@ -132,9 +150,9 @@ class App extends Component {
             <input type="submit" value="Search with URL" />
           </form>
         </header>
-        {this.state.searching && <span>{this.state.searchingMessage}</span>}
+        <span id="goal-message">Your need to find a {this.state.goal}</span><br />
+        {this.state.searching && <span>{this.state.searchingMessage}</span>} {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal} randomGoal={this.randomGoal} remainingGoals={this.state.goals.length}/>}
         {this.state.image && <div id="searched-image"><img alt="your find" src={this.state.image} /></div>}
-        {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal}/>}
       </div>
     );
   }
