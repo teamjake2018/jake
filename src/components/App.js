@@ -16,7 +16,8 @@ class App extends Component {
     super(props);
     this.state = {
       url: 'https://samples.clarifai.com/metro-north.jpg',
-      tags: []
+      tags: [],
+      goal: "tibetan spaniel"
     }
   }
 
@@ -30,6 +31,24 @@ class App extends Component {
     event.currentTarget.reset();
   }
 
+  apiCall = () => {
+    console.log("called")
+    app.workflow.predict('trainedTibetanSpaniel', 
+    "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12223538/Tibetan-Spaniel-On-White-01.jpg")
+    .then(response => {
+      console.log(response) 
+      var concepts = response.results[0].outputs[0].data.concepts
+      var moreConcepts = concepts.concat(response.results[0].outputs[1].data.concepts);
+      console.log({ moreConcepts });
+      const names = moreConcepts.map(elm => elm.name); 
+      console.log({ names });
+      return names;
+    })
+    .then( names => {
+      this.setState({ tags: names });
+    })};
+
+  /* This is the old API call and is being kept around just incase I missed something in my manual merge. But it should be unncessary now.
   apiCall = () => {
     app.models
       .initModel({
@@ -51,7 +70,7 @@ class App extends Component {
       .then( names => {
         this.setState({ tags: names });
       });
-  };
+  };*/
 
   // componentDidMount() {
   //   this.apiCall();
@@ -69,7 +88,7 @@ class App extends Component {
             <input type="submit" value="Search with URL" />
           </form>
         </header>
-        <Tags tags={this.state.tags}/>
+        <Tags tags={this.state.tags} goal={this.state.goal}/>
       </div>
     );
   }
