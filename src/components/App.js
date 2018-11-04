@@ -41,11 +41,15 @@ class App extends Component {
     app.workflow.predict('trainedTibetanSpaniel', 
     this.state.url)
     .then(response => {
-      console.log(response) 
+      console.log({response}) 
       var concepts = response.results[0].outputs[0].data.concepts
-      var moreConcepts = concepts.concat(response.results[0].outputs[1].data.concepts);
-      console.log({ moreConcepts });
-      const names = moreConcepts.map(elm => elm.name); 
+      console.log(response.results[0].outputs[1].data.concepts[0].value > .05)
+      if (response.results[0].outputs[1].data.concepts[0].value > .05){
+        console.log(response.results[0].outputs[1].data.concepts[0])
+          concepts= [...concepts, response.results[0].outputs[1].data.concepts[0]]
+      }
+      console.log({ concepts });
+      const names = concepts.map(elm => elm.name); 
       console.log({ names });
       return names;
     })
