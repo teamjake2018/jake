@@ -21,7 +21,9 @@ class App extends Component {
       searching: false,
       searched: false,
       searchingMessage: "Hold on! I'm thinking!",
-      image:""
+      image:"",
+      finished: false,
+      finishedMessage: "You've won! Three cheers for you, gov'nah!"
     }
     this.randomGoal = this.randomGoal.bind(this)
   }
@@ -32,7 +34,8 @@ class App extends Component {
 
   randomGoal(remainingGoals){
     console.log("new goal")
-    let choice = (Math.floor(Math.random() * remainingGoals));
+    if (remainingGoals != 0)
+    {let choice = (Math.floor(Math.random() * remainingGoals));
     this.setState((state) => ({
       goal: state.goals[choice]
     }))
@@ -41,8 +44,13 @@ class App extends Component {
         goals: this.state.goals.slice(0, choice).concat(this.state.goals.slice(choice + 1))
       }))
       console.log(this.state.goals)
-    }, 2000)
-
+    }, 2000)}
+    else{
+      console.log("finished!")
+      this.setState({
+        finished: true,
+      })
+    }
   }
 
   searchHandler = (event) => {
@@ -153,8 +161,8 @@ class App extends Component {
             <input type="submit" value="Search with URL" />
           </form>
         </header>
-        <span id="goal-message">Your need to find a {this.state.goal}</span><br />
-        {this.state.searching && <span>{this.state.searchingMessage}</span>} {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal} randomGoal={this.randomGoal} remainingGoals={this.state.goals.length}/>}
+        {this.state.finished ? <span id="goal-message">{this.state.finishedMessage}</span> : <span id="goal-message">Your need to find a {this.state.goal}</span>}<br />
+        {this.state.searching && <span>{this.state.searchingMessage}</span>} {(!this.state.searching && this.state.searched) && <Checker tags={this.state.tags} goal={this.state.goal} randomGoal={this.randomGoal} remainingGoals={this.state.goals.length}/>}
         {this.state.image && <div id="searched-image"><img alt="your find" src={this.state.image} /></div>}
       </div>
     );
