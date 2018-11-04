@@ -13,6 +13,7 @@ class Tags extends Component {
     return (
       <div className="tags-container">
         <TagsList tags={this.props.tags} />
+        <Checker goal={this.props.goal} tags={this.props.tags}/>
       </div>
     );
   }
