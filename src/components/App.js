@@ -123,7 +123,7 @@ class App extends Component {
       console.log({response}) 
       var concepts = response.results[0].outputs[0].data.concepts
       console.log(response.results[0].outputs[1].data.concepts[0].value > .05)
-      if (response.results[0].outputs[1].data.concepts[0].value > .05){
+      if (response.results[0].outputs[1].data.concepts[0].value > .85){
         console.log(response.results[0].outputs[1].data.concepts[0])
           concepts= [...concepts, response.results[0].outputs[1].data.concepts[0]]
       }
