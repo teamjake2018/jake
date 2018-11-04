@@ -18,11 +18,28 @@ class Tags extends Component {
     super(props);
     this.state = {
       tags: [],
-      goal: "restaurant"
+      goal: "tibetan spaniel"
     };
   }
 
   apiCall = () => {
+    console.log("called")
+    /*app.workflow.predict('{trainedTibetanSpaniel}', "https://samples.clarifai.com/metro-north.jpg").then(response => {
+      var concepts = response["outputs"][0]["data"]["concepts"];
+      console.log({ concepts });
+      const names = concepts.map(elm => elm.name);
+      console.log({ names });
+      return names;
+      // tagsArr = [...names];
+      // names.forEach(elm => tagsArr.push(elm));
+      // tagsArr.push(...names);
+      // console.log("tags inside: ", tagsArr);
+    })
+    .then( names => {
+      this.setState({ tags: names });
+    });*/
+
+
     app.models
       .initModel({
         id: Clarifai.GENERAL_MODEL,
@@ -30,7 +47,7 @@ class Tags extends Component {
       })
       .then(generalModel => {
         return generalModel.predict(
-          "https://www.romeing.it/wp-content/uploads/2018/05/aroma-restaurant-rome.jpg"
+          "https://cdn2-www.dogtime.com/assets/uploads/2011/01/file_23162_tibetan-spaniel-460x290.jpg"
         );
       })
       .then(response => {
