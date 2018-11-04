@@ -16,7 +16,8 @@ class App extends Component {
     super(props);
     this.state = {
       url: 'https://samples.clarifai.com/metro-north.jpg',
-      tags: []
+      tags: [],
+      goal: "tibetan spaniel"
     }
   }
 
@@ -87,7 +88,7 @@ class App extends Component {
             <input type="submit" value="Search with URL" />
           </form>
         </header>
-        <Tags tags={this.state.tags}/>
+        <Tags tags={this.state.tags} goal={this.state.goal}/>
       </div>
     );
   }
