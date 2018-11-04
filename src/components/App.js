@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: 'https://samples.clarifai.com/metro-north.jpg',
+      url: '',
       tags: [],
       goal: "tibetan spaniel"
     }
@@ -23,24 +23,33 @@ class App extends Component {
 
   searchHandler = (event) => {
     event.preventDefault();
-    console.log(this.urlInput.value);
-    this.setState({ url: this.urlInput.value });
-
-    this.apiCall();
+    console.log("urlInput.value:" + this.urlInput.value);
+    this.setState({ url: this.urlInput.value })
+    
+    /*this.apiCall();*/
 
     event.currentTarget.reset();
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if (this.state.url !== prevState.url)
+    this.apiCall();
   }
 
   apiCall = () => {
     console.log("called")
     app.workflow.predict('trainedTibetanSpaniel', 
-    "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12223538/Tibetan-Spaniel-On-White-01.jpg")
+    this.state.url)
     .then(response => {
-      console.log(response) 
+      console.log({response}) 
       var concepts = response.results[0].outputs[0].data.concepts
-      var moreConcepts = concepts.concat(response.results[0].outputs[1].data.concepts);
-      console.log({ moreConcepts });
-      const names = moreConcepts.map(elm => elm.name); 
+      console.log(response.results[0].outputs[1].data.concepts[0].value > .05)
+      if (response.results[0].outputs[1].data.concepts[0].value > .05){
+        console.log(response.results[0].outputs[1].data.concepts[0])
+          concepts= [...concepts, response.results[0].outputs[1].data.concepts[0]]
+      }
+      console.log({ concepts });
+      const names = concepts.map(elm => elm.name); 
       console.log({ names });
       return names;
     })
