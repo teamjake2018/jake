@@ -16,7 +16,9 @@ class App extends Component {
     this.state = {
       url: '',
       tags: [],
-      goal: "tibetan spaniel"
+      goal: "tibetan spaniel",
+      searching: false,
+      searchingMessage: "Hold on! I'm thinking!"
     }
   }
 
@@ -65,12 +67,15 @@ class App extends Component {
 
     }
     
+    this.searchMessage();
     event.currentTarget.reset();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.url !== prevState.url)
-    this.apiCall();
+    if (this.state.url !== prevState.url && this.state.url){
+      console.log("current url state: " + this.state.url);
+      this.apiCall();
+    }
   }
 
   apiCall = () => {
@@ -92,7 +97,16 @@ class App extends Component {
     })
     .then( names => {
       this.setState({ tags: names });
-    })};
+    }).then(data => this.setState({
+      searching: false,
+      url: ''
+    }))};
+
+    searchMessage = () => {
+      this.setState({
+        searching: true,
+      })
+    }
 
   render() {
     return (
@@ -110,6 +124,7 @@ class App extends Component {
             <input type="submit" value="Search with URL" />
           </form>
         </header>
+        {this.state.searching && <span>{this.state.searchingMessage}</span>}
         <Checker tags={this.state.tags} goal={this.state.goal}/>
       </div>
     );
