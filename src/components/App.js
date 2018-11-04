@@ -30,7 +30,9 @@ class App extends Component {
     const searchHandlerCorrectThis = (base64) => {
       // Correct this!!
       // console.log('`this` is App: ', this);
-      this.setState({ url: {'base64': base64} })
+      this.setState({ 
+        url: {'base64': base64}, 
+        image: 'data:image/jpeg;base64, ' + base64})
     }
 
     // IF IMAGE IS A URL
