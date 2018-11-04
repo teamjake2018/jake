@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import Tags from './Tags.js';
 import Checker from './Checker.js';
+import Header from './Header';
 
 const Clarifai = require("clarifai");
 
@@ -140,22 +141,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
-          <h1>Scavenger Hunt!</h1>
-          <form onSubmit={this.searchHandler}>
-            <input 
-              type="file" 
-              accept='image/png, image/jpeg'
-              ref={ (fileInput) => this.fileInput = fileInput }
-              />
-            <input type="submit" value="Search with file" /><br/>
-            <input type="text" placeholder="Image URL here!" ref={(input) => this.urlInput = input} />
-            <input type="submit" value="Search with URL" />
-          </form>
-        </header>
-        <span id="goal-message">Your need to find a {this.state.goal}</span><br />
-        {this.state.searching && <span>{this.state.searchingMessage}</span>} {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal} randomGoal={this.randomGoal} remainingGoals={this.state.goals.length}/>}
-        {this.state.image && <div id="searched-image"><img alt="your find" src={this.state.image} /></div>}
+        <Header
+          submit={this.searchHandler}
+          fileInputRef={(input) => this.fileInput = input}
+          urlInputRef={(input) => this.urlInput = input} />
+        <br/>
+        <main>
+          <span id="goal-message">Find a {this.state.goal}</span><br />
+          {this.state.searching && <span>{this.state.searchingMessage}</span>} {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal} randomGoal={this.randomGoal} remainingGoals={this.state.goals.length}/>}
+          <br/><br/>
+          {this.state.image && <div id="searched-image"><img alt="your find" src={this.state.image}  id="searched-image-img" /></div>}
+        </main>
+        <br/>
+        <footer>
+          <p>&copy; {new Date().getFullYear()}. All Rights Reserved.</p>
+        </footer>
       </div>
     );
   }
