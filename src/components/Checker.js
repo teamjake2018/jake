@@ -23,11 +23,11 @@ export default class Checker extends React.Component{
                 console.log("goals: " + this.props.goal);
                 console.log("tags: " + this.props.tags[i]);
                 this.setState({displayMessage: this.state.successMessage})
+                this.props.randomGoal(this.props.remainingGoals)
                 break
             }
             this.setState({displayMessage: this.state.failureMessage})
         }
-        this.props.randomGoal(this.props.remainingGoals)
     }
 
     render(){

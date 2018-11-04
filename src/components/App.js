@@ -22,7 +22,9 @@ class App extends Component {
       searching: false,
       searched: false,
       searchingMessage: "Hold on! I'm thinking!",
-      image:""
+      image:"",
+      finished: false,
+      finishedMessage: "You've won! Three cheers for you, gov'nah!"
     }
     this.randomGoal = this.randomGoal.bind(this)
   }
@@ -33,7 +35,8 @@ class App extends Component {
 
   randomGoal(remainingGoals){
     console.log("new goal")
-    let choice = (Math.floor(Math.random() * remainingGoals));
+    if (remainingGoals != 0)
+    {let choice = (Math.floor(Math.random() * remainingGoals));
     this.setState((state) => ({
       goal: state.goals[choice]
     }))
@@ -42,8 +45,13 @@ class App extends Component {
         goals: this.state.goals.slice(0, choice).concat(this.state.goals.slice(choice + 1))
       }))
       console.log(this.state.goals)
-    }, 2000)
-
+    }, 2000)}
+    else{
+      console.log("finished!")
+      this.setState({
+        finished: true,
+      })
+    }
   }
 
   searchHandler = (event) => {
