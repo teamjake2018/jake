@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import Tags from './Tags.js';
+import Checker from './Checker.js';
 
 const Clarifai = require("clarifai");
 
@@ -15,8 +16,33 @@ class App extends Component {
     this.state = {
       url: '',
       tags: [],
-      goal: "tibetan spaniel"
+      goals: ["library", "park", "rabbit", "restaurant", "skyscraper", "strawberry", "tibetan spaniel"],
+      goal: "",
+      searching: false,
+      searched: false,
+      searchingMessage: "Hold on! I'm thinking!",
+      image:""
     }
+    this.randomGoal = this.randomGoal.bind(this)
+  }
+
+  componentDidMount(){
+    this.randomGoal(this.state.goals.length)
+  }
+
+  randomGoal(remainingGoals){
+    console.log("new goal")
+    let choice = (Math.floor(Math.random() * remainingGoals));
+    this.setState((state) => ({
+      goal: state.goals[choice]
+    }))
+    setTimeout(() => {
+      this.setState((state) => ({
+        goals: this.state.goals.slice(0, choice).concat(this.state.goals.slice(choice + 1))
+      }))
+      console.log(this.state.goals)
+    }, 2000)
+
   }
 
   searchHandler = (event) => {
@@ -25,13 +51,18 @@ class App extends Component {
     const searchHandlerCorrectThis = (base64) => {
       // Correct this!!
       // console.log('`this` is App: ', this);
-      this.setState({ url: {'base64': base64} })
+      this.setState({ 
+        url: {'base64': base64}, 
+        image: 'data:image/jpeg;base64, ' + base64})
     }
 
     // IF IMAGE IS A URL
     if (this.urlInput.value) {
       // console.log("urlInput.value:" + this.urlInput.value);
-      this.setState({ url: this.urlInput.value });
+      this.setState({
+        url: this.urlInput.value,
+        image: this.urlInput.value
+       });
     }
     
     // IF IMAGE IS A FILE
@@ -64,12 +95,15 @@ class App extends Component {
 
     }
     
+    this.searchMessage();
     event.currentTarget.reset();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.url !== prevState.url)
-    this.apiCall();
+    if (this.state.url !== prevState.url && this.state.url){
+      console.log("current url state: " + this.state.url);
+      this.apiCall();
+    }
   }
 
   apiCall = () => {
@@ -91,7 +125,17 @@ class App extends Component {
     })
     .then( names => {
       this.setState({ tags: names });
-    })};
+    }).then(data => this.setState({
+      searching: false,
+      url: '',
+      searched: true
+    }))};
+
+    searchMessage = () => {
+      this.setState({
+        searching: true,
+      })
+    }
 
   render() {
     return (
@@ -109,7 +153,9 @@ class App extends Component {
             <input type="submit" value="Search with URL" />
           </form>
         </header>
-        <Tags tags={this.state.tags} goal={this.state.goal}/>
+        <span id="goal-message">Your need to find a {this.state.goal}</span><br />
+        {this.state.searching && <span>{this.state.searchingMessage}</span>} {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal} randomGoal={this.randomGoal} remainingGoals={this.state.goals.length}/>}
+        {this.state.image && <div id="searched-image"><img alt="your find" src={this.state.image} /></div>}
       </div>
     );
   }

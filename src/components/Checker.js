@@ -27,6 +27,7 @@ export default class Checker extends React.Component{
             }
             this.setState({displayMessage: this.state.failureMessage})
         }
+        this.props.randomGoal(this.props.remainingGoals)
     }
 
     render(){
