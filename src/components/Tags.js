@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Checker from './Checker.js';
 
 const Clarifai = require("clarifai");
 
@@ -16,7 +17,8 @@ class Tags extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tags: []
+      tags: [],
+      goal: "restaurant"
     };
   }
 
@@ -28,7 +30,7 @@ class Tags extends Component {
       })
       .then(generalModel => {
         return generalModel.predict(
-          "https://samples.clarifai.com/metro-north.jpg"
+          "https://www.romeing.it/wp-content/uploads/2018/05/aroma-restaurant-rome.jpg"
         );
       })
       .then(response => {
@@ -55,6 +57,7 @@ class Tags extends Component {
     return (
       <div className="tags-container">
         <TagsList tags={this.state.tags} />
+        <Checker goal={this.state.goal} tags={this.state.tags}/>
       </div>
     );
   }
