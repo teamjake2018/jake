@@ -19,7 +19,8 @@ class App extends Component {
       goal: "tibetan spaniel",
       searching: false,
       searched: false,
-      searchingMessage: "Hold on! I'm thinking!"
+      searchingMessage: "Hold on! I'm thinking!",
+      image: {type: "", data: ""}
     }
   }
 
