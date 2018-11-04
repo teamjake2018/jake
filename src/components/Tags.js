@@ -19,11 +19,17 @@ class Tags extends Component {
 }
 
 const TagsList = props => {
-  return props.tags.map((elm, i) => <TagsItem elm={elm} key={i} />);
+  return props.tags.map((elm, i) => 
+    <TagsItem elm={elm} key={i} />
+  );
 };
 
 const TagsItem = props => {
-  return <div className="tags-item">{props.elm}</div>;
+  return (
+    <div className="tags-item">
+      {props.elm}
+    </div>
+  );
 };
 
 export default Tags;
