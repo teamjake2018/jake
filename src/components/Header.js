@@ -3,6 +3,7 @@ import React from 'react';
 const header = props => {
     return (
         <header>
+          <div class="header-container">
           <h1>Scavenger Hunt!</h1>
           <form onSubmit={props.submit}>
             <input 
@@ -18,6 +19,7 @@ const header = props => {
             <span>or</span><input type="text" placeholder="Image URL here!" ref={props.urlInputRef} />
             <input type="submit" value="Search with URL" />
           </form>
+          </div>
         </header>
     );
 }
