@@ -154,8 +154,8 @@ class App extends Component {
           fileInputRef={(input) => this.fileInput = input}
           urlInputRef={(input) => this.urlInput = input} />
         {/*  <br/> */}
-          <main>
-            <span id="goal-message">Find a {this.state.goal}</span>
+          <main> 
+          {this.state.finished ? <span id="goal-message">{this.state.finishedMessage}</span> : <span id="goal-message">Your need to find a {this.state.goal}</span>}
             {/*<br />*/}
             {this.state.searching && <span>{this.state.searchingMessage}</span>} 
             {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal} randomGoal={this.randomGoal} remainingGoals={this.state.goals.length}/>}
