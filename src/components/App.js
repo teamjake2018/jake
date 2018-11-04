@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import Tags from './Tags.js';
+import Checker from './Checker.js';
 
 const Clarifai = require("clarifai");
 
@@ -109,7 +110,7 @@ class App extends Component {
             <input type="submit" value="Search with URL" />
           </form>
         </header>
-        <Tags tags={this.state.tags} goal={this.state.goal}/>
+        <Checker tags={this.state.tags} goal={this.state.goal}/>
       </div>
     );
   }
