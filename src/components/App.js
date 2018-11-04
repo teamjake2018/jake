@@ -21,15 +21,89 @@ class App extends Component {
     }
   }
 
+  // searchHandler = (event) => {
+  //   event.preventDefault();
+  //   console.log("urlInput.value:" + this.urlInput.value);
+  //   this.setState({ url: this.urlInput.value })
+  //   event.currentTarget.reset();
+  // }
+
+  // function convertBase64(response) {
+  //   // console.log(reader.result);
+  //   // RegEx credit: https://github.com/phazonoverload/clarifai-nsfw-form-check/blob/master/clarifai-nsfw-checker.js
+  //   const fbase64 = response.target.result.replace(/^data:image\/(.*);base64,/, '');
+  //   // const fbase64 = reader.result.replace(/^data:image\/(.*);base64,/, '');
+  //   // const base64 = reader.result.split("base64,")[1];
+  //   console.log({ fbase64 });
+  //   console.log('this: ', this);
+  //   // this.setState({url: 'hi'});
+  //   this.setState({ url: {base64: fbase64} } );
+  //   // this.setState(url: {base64: base64});
+  // };
+
   searchHandler = (event) => {
     event.preventDefault();
-    console.log("urlInput.value:" + this.urlInput.value);
-    this.setState({ url: this.urlInput.value })
-    
-    /*this.apiCall();*/
 
+    // IF URL
+    if (this.urlInput.value) {
+      console.log("urlInput.value:" + this.urlInput.value);
+      this.setState({ url: this.urlInput.value });
+    }
+    
+    // IF FILE
+    else if (this.fileInput.files[0]) {
+      console.log('fileInput', this.fileInput.files[0]);
+      const file = this.fileInput.files[0];
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      console.log('this: ', this); // App
+
+      function convertBase64(response) {
+        // console.log(reader.result);
+        // RegEx credit: https://github.com/phazonoverload/clarifai-nsfw-form-check/blob/master/clarifai-nsfw-checker.js
+        const fbase64 = response.target.result.replace(/^data:image\/(.*);base64,/, '');
+        // const fbase64 = reader.result.replace(/^data:image\/(.*);base64,/, '');
+        // const base64 = reader.result.split("base64,")[1];
+        console.log({ fbase64 });
+        console.log('this: ', this); // FileReader
+        // this.setState({url: 'hi'});
+        // this.setState({ url: {base64: fbase64} } );
+        // this.setState(url: {base64: base64});
+      };
+
+      // Use `onload` bc FileReader is async
+      reader.onload = convertBase64;
+      
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+
+    }
+    
     event.currentTarget.reset();
   }
+
+  // fileHandler = (event) => {
+  //   const getBase64 = (file) => {
+  //     const reader = new FileReader();
+
+  //     const whenFileLoaded = (e) => {
+  //       const localBase64 = reader.result.split("base64,")[1];
+  //       app.workflow.predict('trainedTibetanSpaniel', localBase64)
+  //       .then(response => {
+  //         var concepts = response.results[0].outputs[0].data.concepts;
+  //         console.log({ concepts });
+  //       })
+  //     }
+
+  //     FileReader.onloadend = whenFileLoaded;
+
+  //   }
+
+  //   getBase64(event.target.files[0]); 
+  // }
 
   componentDidUpdate(prevProps, prevState){
     if (this.state.url !== prevState.url)
@@ -91,7 +165,11 @@ class App extends Component {
         <header>
           <h1>Scavenger Hunt!</h1>
           <form onSubmit={this.searchHandler}>
-            <input type="file" />
+            <input 
+              type="file" 
+              accept='image/png, image/jpeg'
+              ref={ (fileInput) => this.fileInput = fileInput }
+              />
             <input type="submit" value="Search with file" /><br/>
             <input type="text" placeholder="Image URL here!" ref={(input) => this.urlInput = input} />
             <input type="submit" value="Search with URL" />
