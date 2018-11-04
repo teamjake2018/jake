@@ -7,9 +7,12 @@ const header = props => {
           <form onSubmit={props.submit}>
             <input 
               type="file" 
+              name="file"
+              id="file"
               accept='image/png, image/jpeg'
               ref={props.fileInputRef}
               />
+              <label for="file">Choose a file</label>
             <input type="submit" value="Search with file" />
             <br/>
             <span>or</span><input type="text" placeholder="Image URL here!" ref={props.urlInputRef} />

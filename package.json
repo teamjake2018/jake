@@ -10,8 +10,8 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start env",
+    "build": "react-scripts build env",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -34,6 +34,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/teamjake2018/jake/issues"
-  },
-  "homepage": "https://github.com/teamjake2018/jake#readme"
+  }
 }
