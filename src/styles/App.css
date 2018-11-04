@@ -94,10 +94,36 @@ footer p { text-align: center; }
     Layout
 ========================================================== */
 
+/* Responsive Layout - Fallback */
+
 .App main {
   margin: 0 auto;
-  width: 95%;
+  /* width: 95%; */
   font-size: 1.5rem;
+}
+
+.App main {
+  /* width: 33em; */
+  max-width: 33em;
+  max-width: 50em;
+  margin: 0 auto;
+}
+
+header h1 {
+  /* max-width: 20em; */
+  /* display: block; */
+  /* width: 40em; */
+  /* margin: 0 auto; */
+}
+
+.header-container {
+  /* max-width: 50em; */
+  max-width: 55em;
+  display: flex;
+  margin: 0 auto;
+  /* width: 60em; */
+  flex-direction: column;
+  /* justify-content: center; */
 }
 
 /* Layouts for browsers with CSS Grid support */
