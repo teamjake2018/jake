@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-// import logo from '../static/logo.svg';
 import '../styles/App.css';
 import Tags from './Tags.js';
-import { get } from 'http';
 
 const Clarifai = require("clarifai");
 
@@ -23,15 +21,53 @@ class App extends Component {
 
   searchHandler = (event) => {
     event.preventDefault();
-    console.log("urlInput.value:" + this.urlInput.value);
-    this.setState({ url: this.urlInput.value })
-    
-    /*this.apiCall();*/
 
+    const searchHandlerCorrectThis = (base64) => {
+      // Correct this!!
+      // console.log('`this` is App: ', this);
+      this.setState({ url: {'base64': base64} })
+    }
+
+    // IF IMAGE IS A URL
+    if (this.urlInput.value) {
+      // console.log("urlInput.value:" + this.urlInput.value);
+      this.setState({ url: this.urlInput.value });
+    }
+    
+    // IF IMAGE IS A FILE
+    else if (this.fileInput.files[0]) {
+      // Fetch first file in the node's file list
+      const file = this.fileInput.files[0];
+      console.log('fileInput:', this.fileInput.files[0]);
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      function convertBase64(response) {
+        // console.log(reader.result);
+        // response.target = reader.result
+        const base64 = response.target.result.split("base64,")[1];
+        console.log({ base64 });
+        searchHandlerCorrectThis(base64);
+
+        console.log('this: ', this); // `this` is FileReader!! 
+        // Because convertBase64 is onload, and online is a method of reader, and reader is an instance
+        // of FileReader. So you can't do this.setState here!!
+      };
+
+      // Use `onload` bc FileReader is async
+      reader.onload = convertBase64;
+      
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+
+    }
+    
     event.currentTarget.reset();
   }
 
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.url !== prevState.url)
     this.apiCall();
   }
@@ -57,41 +93,17 @@ class App extends Component {
       this.setState({ tags: names });
     })};
 
-  /* This is the old API call and is being kept around just incase I missed something in my manual merge. But it should be unncessary now.
-  apiCall = () => {
-    app.models
-      .initModel({
-        id: Clarifai.GENERAL_MODEL,
-        version: "aa7f35c01e0642fda5cf400f543e7c40"
-      })
-      .then(generalModel => {
-        return generalModel.predict(
-          this.state.url
-        );
-      })
-      .then(response => {
-        var concepts = response["outputs"][0]["data"]["concepts"];
-        console.log({ concepts });
-        const names = concepts.map(elm => elm.name);
-        console.log({ names });
-        return names;
-      })
-      .then( names => {
-        this.setState({ tags: names });
-      });
-  };*/
-
-  // componentDidMount() {
-  //   this.apiCall();
-  // }
-
   render() {
     return (
       <div className="App">
         <header>
           <h1>Scavenger Hunt!</h1>
           <form onSubmit={this.searchHandler}>
-            <input type="file" />
+            <input 
+              type="file" 
+              accept='image/png, image/jpeg'
+              ref={ (fileInput) => this.fileInput = fileInput }
+              />
             <input type="submit" value="Search with file" /><br/>
             <input type="text" placeholder="Image URL here!" ref={(input) => this.urlInput = input} />
             <input type="submit" value="Search with URL" />
