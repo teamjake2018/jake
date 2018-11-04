@@ -20,7 +20,7 @@ class App extends Component {
       searching: false,
       searched: false,
       searchingMessage: "Hold on! I'm thinking!",
-      image: {type: "", data: ""}
+      image:""
     }
   }
 
@@ -36,7 +36,10 @@ class App extends Component {
     // IF IMAGE IS A URL
     if (this.urlInput.value) {
       // console.log("urlInput.value:" + this.urlInput.value);
-      this.setState({ url: this.urlInput.value });
+      this.setState({
+        url: this.urlInput.value,
+        image: this.urlInput.value
+       });
     }
     
     // IF IMAGE IS A FILE
@@ -128,6 +131,7 @@ class App extends Component {
           </form>
         </header>
         {this.state.searching && <span>{this.state.searchingMessage}</span>}
+        {this.state.image && <div id="searched-image"><img alt="your find" src={this.state.image} /></div>}
         {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal}/>}
       </div>
     );
