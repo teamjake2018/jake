@@ -66,10 +66,7 @@ header form input[type="submit"] {
   display: block;
   margin: 0 auto;
   min-width: 50vw;
-  width: 100%;
-  /* min-width: 100%; */
-  /* max-width: 100%;  */
-  /* parent is main */
+  width: 100%; /* Makes images responsive. Parent is `main` */
 }
 
 /* @media screen and (min-width: 768px) {
@@ -98,6 +95,16 @@ footer {
 }
 
 footer p { text-align: center; }
+
+/* ======================================================= 
+    Media Queries
+========================================================== */
+
+@media screen and (min-width: 55rem) {
+  .App main {
+    width: 55rem;
+  }
+}
 
 /* ======================================================= 
     Layout
@@ -144,13 +151,14 @@ header h1 {
     grid-template-rows: auto 1fr auto;
   }
 
-  /* main {
+  main {
     display: grid;
-
-  } */
+  }
 
   #goal-message {
+    display: block;
     margin-top: 20px;
+    /* align-self: start; */
   }
 
   #checker {
