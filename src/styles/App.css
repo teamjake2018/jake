@@ -11,7 +11,9 @@
     Typography
 ========================================================== */
 
-header h1 { display: inline-block; }
+header h1 { 
+  display: inline-block; 
+}
 
 /* ======================================================= 
     Styles
@@ -63,21 +65,27 @@ header form input[type="submit"] {
 #searched-image img {
   display: block;
   margin: 0 auto;
+  width: 100%;
+  /* min-width: 100%; */
+  /* max-width: 100%;  */
+  /* parent is main */
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   #searched-image img {
-    width: 50%;
-    height: auto;
+    /* width: 50%; * /
+    width: 100%
+    /* height: auto; * /
   }
-}
+} */
 
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
   #searched-image img {
-    width: 80%;
-    height: auto;
+    /* width: 80%; * /
+    width: 100%; /* Crucial for mobile viewports, otherwise header & footer get cut off */
+    /* height: auto; * /
   }
-}
+} */
 
 footer {
   width: 100%;
@@ -85,7 +93,7 @@ footer {
   /* position: fixed; */
   bottom: 0;
   background-color: var(--mintGreen);
-  background-color: #13e28c;
+  /* background-color: #13e28c; */
 }
 
 footer p { text-align: center; }
@@ -104,8 +112,8 @@ footer p { text-align: center; }
 
 .App main {
   /* width: 33em; */
-  max-width: 33em;
-  max-width: 50em;
+  /* max-width: 50em; */
+  max-width: 55rem; /* constrains image width */
   margin: 0 auto;
 }
 
@@ -118,7 +126,7 @@ header h1 {
 
 .header-container {
   /* max-width: 50em; */
-  max-width: 55em;
+  max-width: 55rem;
   display: flex;
   margin: 0 auto;
   /* width: 60em; */
@@ -135,10 +143,10 @@ header h1 {
     grid-template-rows: auto 1fr auto;
   }
 
-  main {
+  /* main {
     display: grid;
 
-  }
+  } */
 
   #goal-message {
     margin-top: 20px;
