@@ -58,21 +58,27 @@ header form input[type="file"] {
     cursor: pointer;
 } */
 
+form .header-container-row:first-of-type {
+  margin-bottom: 10px;
+}
+
 .file-select {
   color: var(--gray-placeholder);
   border: 0;
   padding: 5px 10px;
   cursor: pointer;
   background-color: white;
-  font-family: system-ui;
-  font-size: 11px;
+  /* font-family: system-ui; */
+  /* font-size: 11px; */
+  /* font-size: .9em; */
   border-radius: 3px 0 0 3px;
-  font-stretch: 100%;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: normal;
-  line-height: normal;
-  text-align: center;
+  display: inline-block;
+  /* font-stretch: 100%; */
+  /* font-style: normal; */
+  /* font-weight: 400; */
+  /* letter-spacing: normal; */
+  /* line-height: normal; */
+  /* text-align: center; */
 }
 
 .input-file-submit {
@@ -81,6 +87,8 @@ header form input[type="file"] {
 
 .input-url {
   border-radius: 3px 0 0 3px;
+  /* font-size: .9em; */
+  /* line-height: normal; */
 }
 
 .input-url-submit {
