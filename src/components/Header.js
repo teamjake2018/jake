@@ -10,8 +10,8 @@ const header = props => {
             <div className='header-container-row'>
               <span>Choose a file</span>
               <div className='file-container-col2'>
-                <label for='file' className='file-select'>
-                    Click to choose a file!&nbsp;
+                <label htmlFor='file' className='file-select'>
+                    Click to choose a file!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </label>
                 <input 
                   type="file" 
