@@ -157,10 +157,10 @@ class App extends Component {
 
           <main> 
           {this.state.finished ? <span id="goal-message">{this.state.finishedMessage}</span> : <span id="goal-message">You need to find a {this.state.goal}</span>}
-            <br />
+            {/* <br /> */}
             {this.state.searching && <span>{this.state.searchingMessage}</span>} 
             {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal} randomGoal={this.randomGoal} remainingGoals={this.state.goals.length}/>}
-           <br/><br/>
+           {/* <br/><br/> */}
             {this.state.image && <div id="searched-image"><img alt="your find" src={this.state.image}  id="searched-image-img" /></div>}
           </main>
           {/* <br/> */}
