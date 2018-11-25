@@ -11,7 +11,9 @@
     Typography
 ========================================================== */
 
-header h1 { display: inline-block; }
+header h1 { 
+  display: inline-block; 
+}
 
 /* ======================================================= 
     Styles
@@ -63,32 +65,50 @@ header form input[type="submit"] {
 #searched-image img {
   display: block;
   margin: 0 auto;
+  /* min-width: 50vw; */
+  width: 100%; /* Makes images responsive. Parent is `main` */
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   #searched-image img {
-    width: 50%;
-    height: auto;
+    /* width: 50%; * /
+    width: 100%
+    /* height: auto; * /
   }
-}
+} */
 
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
   #searched-image img {
-    width: 80%;
-    height: auto;
+    /* width: 80%; * /
+    width: 100%; /* Crucial for mobile viewports, otherwise header & footer get cut off */
+    /* height: auto; * /
   }
-}
+} */
 
 footer {
   width: 100%;
   height: 50px;
+  margin-top: 3em;
   /* position: fixed; */
   bottom: 0;
   background-color: var(--mintGreen);
-  background-color: #13e28c;
+  /* background-color: #13e28c; */
 }
 
 footer p { text-align: center; }
+
+/* ======================================================= 
+    Media Queries
+========================================================== */
+
+@media screen and (min-width: 55rem) {
+  .App main {
+    width: 55rem;
+  }
+  #searched-image img {
+    width: 80%;
+  }
+}
 
 /* ======================================================= 
     Layout
@@ -104,8 +124,8 @@ footer p { text-align: center; }
 
 .App main {
   /* width: 33em; */
-  max-width: 33em;
-  max-width: 50em;
+  /* max-width: 50em; */
+  max-width: 55rem; /* constrains image width */
   margin: 0 auto;
 }
 
@@ -118,7 +138,7 @@ header h1 {
 
 .header-container {
   /* max-width: 50em; */
-  max-width: 55em;
+  max-width: 55rem;
   display: flex;
   margin: 0 auto;
   /* width: 60em; */
@@ -137,11 +157,14 @@ header h1 {
 
   main {
     display: grid;
-
+    align-items: start;
+    grid-auto-rows: minmax(min-content, max-content);
   }
 
   #goal-message {
+    display: block; /* Can't add margin-top to inline */
     margin-top: 20px;
+    /* align-self: start; */
   }
 
   #checker {

@@ -153,16 +153,18 @@ class App extends Component {
           submit={this.searchHandler}
           fileInputRef={(input) => this.fileInput = input}
           urlInputRef={(input) => this.urlInput = input} />
-        {/*  <br/> */}
+         {/* <br/> */}
+
           <main> 
-          {this.state.finished ? <span id="goal-message">{this.state.finishedMessage}</span> : <span id="goal-message">Your need to find a {this.state.goal}</span>}
-            {/*<br />*/}
+          {this.state.finished ? <span id="goal-message">{this.state.finishedMessage}</span> : <span id="goal-message">You need to find a {this.state.goal}</span>}
+            {/* <br /> */}
             {this.state.searching && <span>{this.state.searchingMessage}</span>} 
             {(!this.state.searching && this.state.searched )&& <Checker tags={this.state.tags} goal={this.state.goal} randomGoal={this.randomGoal} remainingGoals={this.state.goals.length}/>}
-        {/*    <br/><br/> */}
+           {/* <br/><br/> */}
             {this.state.image && <div id="searched-image"><img alt="your find" src={this.state.image}  id="searched-image-img" /></div>}
           </main>
-          <br/>
+          {/* <br/> */}
+
         <footer>
           <p>&copy; {new Date().getFullYear()}. All Rights Reserved.</p>
         </footer>
