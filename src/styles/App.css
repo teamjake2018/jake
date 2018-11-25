@@ -5,13 +5,18 @@
 :root { 
   --mintGreen: #13e28c; 
   --buttonColor: #ffff49;
+  --gray-light: #f8f8f8;
+  --gray-placeholder: #767676;
+  /* --gray-med: #d3d3d3; */
 }
 
 /* ======================================================= 
     Typography
 ========================================================== */
 
-header h1 { display: inline-block; }
+header h1 { 
+  display: inline-block; 
+}
 
 /* ======================================================= 
     Styles
@@ -27,7 +32,7 @@ header {
 header form input[type="text"] {
   border: none;
   padding: 5px 10px;
-  margin-left: 39px;
+  /* margin-left: 39px; */
 }
 
 @media screen and (max-width: 500px) {
@@ -49,46 +54,102 @@ header form input[type="file"] {
 	z-index: -1;
 }
 
-header form input[type="file"] + label {
+/* header form input[type="file"] + label {
     cursor: pointer;
+} */
+
+form .header-container-row:first-of-type {
+  margin-bottom: 10px;
+}
+
+.file-select {
+  color: var(--gray-placeholder);
+  border: 0;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: white;
+  /* font-family: system-ui; */
+  /* font-size: 11px; */
+  /* font-size: .9em; */
+  border-radius: 3px 0 0 3px;
+  display: inline-block;
+  /* font-stretch: 100%; */
+  /* font-style: normal; */
+  /* font-weight: 400; */
+  /* letter-spacing: normal; */
+  /* line-height: normal; */
+  /* text-align: center; */
+}
+
+.input-file-submit {
+  border-radius: 0 3px 3px 0;
+}
+
+.input-url {
+  border-radius: 3px 0 0 3px;
+  /* font-size: .9em; */
+  /* line-height: normal; */
+}
+
+.input-url-submit {
+  border-radius: 0 3px 3px 0;
 }
 
 header form input[type="submit"] {
   border: none;
   padding: 5px 10px;
-  background-color: var(--buttonColor);
-  background-color: #ffff57;
+  /* background-color: var(--buttonColor); */
+  /* background-color: #ffff57; */
+  background-color: var(--gray-light);
 }
 
 #searched-image img {
   display: block;
   margin: 0 auto;
+  /* min-width: 50vw; */
+  width: 100%; /* Makes images responsive. Parent is `main` */
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   #searched-image img {
-    width: 50%;
-    height: auto;
+    /* width: 50%; * /
+    width: 100%
+    /* height: auto; * /
   }
-}
+} */
 
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
   #searched-image img {
-    width: 80%;
-    height: auto;
+    /* width: 80%; * /
+    width: 100%; /* Crucial for mobile viewports, otherwise header & footer get cut off */
+    /* height: auto; * /
   }
-}
+} */
 
 footer {
   width: 100%;
   height: 50px;
+  margin-top: 3em;
   /* position: fixed; */
   bottom: 0;
   background-color: var(--mintGreen);
-  background-color: #13e28c;
+  /* background-color: #13e28c; */
 }
 
 footer p { text-align: center; }
+
+/* ======================================================= 
+    Media Queries
+========================================================== */
+
+@media screen and (min-width: 55rem) {
+  .App main {
+    width: 55rem;
+  }
+  #searched-image img {
+    width: 80%;
+  }
+}
 
 /* ======================================================= 
     Layout
@@ -104,8 +165,8 @@ footer p { text-align: center; }
 
 .App main {
   /* width: 33em; */
-  max-width: 33em;
-  max-width: 50em;
+  /* max-width: 50em; */
+  max-width: 55rem; /* constrains image width */
   margin: 0 auto;
 }
 
@@ -118,7 +179,7 @@ header h1 {
 
 .header-container {
   /* max-width: 50em; */
-  max-width: 55em;
+  max-width: 55rem;
   display: flex;
   margin: 0 auto;
   /* width: 60em; */
@@ -137,11 +198,14 @@ header h1 {
 
   main {
     display: grid;
-
+    align-items: start;
+    grid-auto-rows: minmax(min-content, max-content);
   }
 
   #goal-message {
+    display: block; /* Can't add margin-top to inline */
     margin-top: 20px;
+    /* align-self: start; */
   }
 
   #checker {
