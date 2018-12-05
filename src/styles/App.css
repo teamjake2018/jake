@@ -2,8 +2,8 @@
     Variables
 ========================================================== */
 
-:root { 
-  --mintGreen: #13e28c; 
+:root {
+  --mintGreen: #13e28c;
   --buttonColor: #ffff49;
   --gray-light: #f8f8f8;
   --gray-placeholder: #767676;
@@ -14,8 +14,8 @@
     Typography
 ========================================================== */
 
-header h1 { 
-  display: inline-block; 
+header h1 {
+  display: inline-block;
 }
 
 /* ======================================================= 
@@ -26,32 +26,32 @@ header {
   padding: 15px 25px;
   background-color: var(--mintGreen);
   background-color: #13e28c;
-  box-shadow: 0 0 15px 1px rgba(0,0,0,.5);
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.5);
 }
 
-header form input[type="text"] {
+header form input[type='text'] {
   border: none;
   padding: 5px 10px;
   /* margin-left: 39px; */
 }
 
 @media screen and (max-width: 500px) {
-  header form input[type="text"] {
+  header form input[type='text'] {
     display: block;
     margin-top: 10px;
     margin-left: 0;
   }
 }
 
-header form input[type="file"] {
+header form input[type='file'] {
   border: none;
   padding: 10px 0;
   width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 /* header form input[type="file"] + label {
@@ -95,7 +95,7 @@ form .header-container-row:first-of-type {
   border-radius: 0 3px 3px 0;
 }
 
-header form input[type="submit"] {
+header form input[type='submit'] {
   border: none;
   padding: 5px 10px;
   /* background-color: var(--buttonColor); */
@@ -122,7 +122,7 @@ header form input[type="submit"] {
   #searched-image img {
     /* width: 80%; * /
     width: 100%; /* Crucial for mobile viewports, otherwise header & footer get cut off */
-    /* height: auto; * /
+/* height: auto; * /
   }
 } */
 
@@ -136,7 +136,9 @@ footer {
   /* background-color: #13e28c; */
 }
 
-footer p { text-align: center; }
+footer p {
+  text-align: center;
+}
 
 /* ======================================================= 
     Media Queries
@@ -209,6 +211,5 @@ header h1 {
   }
 
   #checker {
-
   }
 }
