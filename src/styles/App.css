@@ -35,13 +35,13 @@ header form input[type='text'] {
   /* margin-left: 39px; */
 }
 
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
   header form input[type='text'] {
     display: block;
     margin-top: 10px;
     margin-left: 0;
   }
-}
+} */
 
 header form input[type='file'] {
   border: none;
