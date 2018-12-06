@@ -5,14 +5,17 @@
 .header-container form {
   display: grid;
   grid-template-rows: auto auto;
-  grid-auto-flow: column;
+  grid-template-columns: 10em 13em 9em;
+  grid-row-gap: 10px;
+  /* grid-auto-flow: column; */
   /* align-items: start; */
 }
 
-.header-container-row {
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-columns: 10em auto;
-  /* grid-auto-columns: auto; */
-  /* grid-auto-rows: auto; */
+.file-select {
+  width: 100%;
+}
+
+.input-file-submit,
+.input-url-submit {
+  text-align: left;
 }
