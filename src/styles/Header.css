@@ -4,18 +4,52 @@
 
 .header-container form {
   display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: 10em 13em 9em;
-  grid-row-gap: 10px;
-  /* grid-auto-flow: column; */
-  /* align-items: start; */
+  grid-template-columns: 1fr; /* Mobile-first: In mobile viewports, header components will be single column */
+  /* grid-auto-rows: ; */
 }
 
-.file-select {
-  width: 100%;
+.input-file-select {
+  display: block;
+  border-radius: 3px;
+}
+
+.input-file {
+  display: block;
+}
+
+.input-url {
+  border-radius: 3px;
 }
 
 .input-file-submit,
 .input-url-submit {
   text-align: left;
+  border-radius: 3px;
+}
+
+/* ======================================================= 
+    Media Queries
+========================================================== */
+
+/* At wider viewports, header components will be three-column */
+@media (min-width: 615px) {
+  .header-container form {
+    grid-template-rows: auto auto;
+    grid-template-columns: 10em 13em 9em;
+    grid-row-gap: 10px;
+    /* grid-auto-flow: column; */
+    /* align-items: start; */
+  }
+
+  .input-file-select {
+    width: 100%;
+  }
+
+  .input-url {
+    border-radius: 3px 0 0 3px;
+  }
+
+  .input-url-submit {
+    border-radius: 0 3px 3px 0;
+  }
 }

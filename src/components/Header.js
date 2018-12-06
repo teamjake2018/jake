@@ -9,7 +9,7 @@ const Header = props => {
         <form onSubmit={props.submit}>
           <span className="form-text">Choose a file</span>
           <div className="file-container-col2">
-            <label htmlFor="file" className="file-select">
+            <label htmlFor="file" className="input-file-select">
               Click to choose a file!
             </label>
             <input
@@ -27,7 +27,7 @@ const Header = props => {
             className="input-file-submit"
           />
 
-          <span className="form-test">or</span>
+          <span className="form-text">or</span>
           <input
             type="text"
             placeholder="Image URL here!"
