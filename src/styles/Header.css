@@ -2,17 +2,118 @@
   Page Components
 ==================================== */
 
-.header-container form {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-auto-flow: column;
-    /* align-items: start; */
+header {
+  padding: 15px 25px;
+  background-color: var(--mintGreen);
+  background-color: #13e28c;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.5);
 }
 
-.header-container-row {
-    display: grid;
-    grid-auto-flow: row;
-    grid-template-columns: 10em auto;
-    /* grid-auto-columns: auto; */
-    /* grid-auto-rows: auto; */
+header h1 {
+  display: inline-block;
+}
+
+.header-container form {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile-first: In mobile viewports, header components will be single column */
+  /* grid-auto-rows: ; */
+}
+
+.form-text {
+  padding: 5px 0;
+}
+
+header form input[type='text'] {
+  border: none;
+  padding: 5px 10px;
+  /* margin-left: 39px; */
+}
+
+/* @media screen and (max-width: 500px) {
+  header form input[type='text'] {
+    display: block;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+} */
+
+header form input[type='file'] {
+  border: none;
+  padding: 10px 0;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+/* header form input[type="file"] + label {
+    cursor: pointer;
+} */
+
+header form input[type='submit'] {
+  border: none;
+  padding: 5px 10px;
+  background-color: var(--gray-light);
+}
+
+.input-file-select {
+  color: var(--gray-placeholder);
+  border: 0;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: white;
+  display: block;
+  border-radius: 3px 3px 0 0;
+}
+
+.input-file {
+  display: block;
+}
+
+.input-file-submit {
+  border-radius: 0 0 3px 3px;
+  text-align: left;
+}
+
+.input-url {
+  border-radius: 3px 3px 0 0;
+}
+
+.input-url-submit {
+  border-radius: 0 0 3px 3px;
+  text-align: left;
+}
+
+/* ======================================================= 
+    Media Queries
+========================================================== */
+
+/* At wider viewports, header components will be three-column */
+@media (min-width: 615px) {
+  .header-container form {
+    grid-template-rows: auto auto;
+    grid-template-columns: 10em 13em 9em;
+    grid-row-gap: 10px;
+    /* grid-auto-flow: column; */
+    /* align-items: start; */
+  }
+
+  .input-file-select {
+    /* width: 100%; If this element is inline-block, then this rule will stretch over input[file] which is currently hidden and z-index -1*/
+    border-radius: 3px 0 0 3px;
+  }
+
+  .input-file-submit {
+    border-radius: 0 3px 3px 0;
+  }
+
+  .input-url {
+    border-radius: 3px 0 0 3px;
+  }
+
+  .input-url-submit {
+    border-radius: 0 3px 3px 0;
+  }
 }

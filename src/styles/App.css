@@ -2,8 +2,8 @@
     Variables
 ========================================================== */
 
-:root { 
-  --mintGreen: #13e28c; 
+:root {
+  --mintGreen: #13e28c;
   --buttonColor: #ffff49;
   --gray-light: #f8f8f8;
   --gray-placeholder: #767676;
@@ -11,97 +11,16 @@
 }
 
 /* ======================================================= 
-    Typography
-========================================================== */
-
-header h1 { 
-  display: inline-block; 
-}
-
-/* ======================================================= 
     Styles
 ========================================================== */
 
-header {
-  padding: 15px 25px;
-  background-color: var(--mintGreen);
-  background-color: #13e28c;
-  box-shadow: 0 0 15px 1px rgba(0,0,0,.5);
-}
-
-header form input[type="text"] {
-  border: none;
-  padding: 5px 10px;
-  /* margin-left: 39px; */
-}
-
-@media screen and (max-width: 500px) {
-  header form input[type="text"] {
-    display: block;
-    margin-top: 10px;
-    margin-left: 0;
+/* @media screen and (max-width: 500px) {
+  #searched-image img {
+    /* width: 80%; * /
+    width: 100%; /* Crucial for mobile viewports, otherwise header & footer get cut off */
+/* height: auto; * /
   }
-}
-
-header form input[type="file"] {
-  border: none;
-  padding: 10px 0;
-  width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-
-/* header form input[type="file"] + label {
-    cursor: pointer;
 } */
-
-form .header-container-row:first-of-type {
-  margin-bottom: 10px;
-}
-
-.file-select {
-  color: var(--gray-placeholder);
-  border: 0;
-  padding: 5px 10px;
-  cursor: pointer;
-  background-color: white;
-  /* font-family: system-ui; */
-  /* font-size: 11px; */
-  /* font-size: .9em; */
-  border-radius: 3px 0 0 3px;
-  display: inline-block;
-  /* font-stretch: 100%; */
-  /* font-style: normal; */
-  /* font-weight: 400; */
-  /* letter-spacing: normal; */
-  /* line-height: normal; */
-  /* text-align: center; */
-}
-
-.input-file-submit {
-  border-radius: 0 3px 3px 0;
-}
-
-.input-url {
-  border-radius: 3px 0 0 3px;
-  /* font-size: .9em; */
-  /* line-height: normal; */
-}
-
-.input-url-submit {
-  border-radius: 0 3px 3px 0;
-}
-
-header form input[type="submit"] {
-  border: none;
-  padding: 5px 10px;
-  /* background-color: var(--buttonColor); */
-  /* background-color: #ffff57; */
-  background-color: var(--gray-light);
-}
 
 #searched-image img {
   display: block;
@@ -118,14 +37,6 @@ header form input[type="submit"] {
   }
 } */
 
-/* @media screen and (max-width: 500px) {
-  #searched-image img {
-    /* width: 80%; * /
-    width: 100%; /* Crucial for mobile viewports, otherwise header & footer get cut off */
-    /* height: auto; * /
-  }
-} */
-
 footer {
   width: 100%;
   height: 50px;
@@ -133,10 +44,11 @@ footer {
   /* position: fixed; */
   bottom: 0;
   background-color: var(--mintGreen);
-  /* background-color: #13e28c; */
 }
 
-footer p { text-align: center; }
+footer p {
+  text-align: center;
+}
 
 /* ======================================================= 
     Media Queries
@@ -170,12 +82,12 @@ footer p { text-align: center; }
   margin: 0 auto;
 }
 
-header h1 {
-  /* max-width: 20em; */
-  /* display: block; */
-  /* width: 40em; */
-  /* margin: 0 auto; */
-}
+/* header h1 {
+  max-width: 20em;
+  display: block;
+  width: 40em;
+  margin: 0 auto;
+} */
 
 .header-container {
   /* max-width: 50em; */
@@ -206,9 +118,5 @@ header h1 {
     display: block; /* Can't add margin-top to inline */
     margin-top: 20px;
     /* align-self: start; */
-  }
-
-  #checker {
-
   }
 }
