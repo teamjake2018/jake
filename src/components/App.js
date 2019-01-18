@@ -69,14 +69,25 @@ class App extends Component {
   searchHandler = event => {
     event.preventDefault();
 
-    const fileAppSetState = base64 => {
-      // Correct `this`!!
-      // console.log('`this` is App: ', this);
-      this.setState({
-        url: { base64: base64 },
-        image: 'data:image/jpeg;base64, ' + base64
-      });
-    };
+    // Arrow function - `this` will be `App`
+    // const fileAppSetState = base64 => {
+    //   // Correct `this`!!
+    //   // console.log('`this` is App: ', this);
+    //   this.setState({
+    //     url: { base64: base64 },
+    //     image: 'data:image/jpeg;base64, ' + base64
+    //   });
+    // };
+
+    // Non-arrow function - `this` will NOT be `App`
+    // function fileAppSetState(base64) {
+    // console.log('non-arrow: ', this); // `this` is `undefined`
+
+    // this.setState({
+    //   url: { base64: base64 },
+    //   image: 'data:image/jpeg;base64, ' + base64
+    // });
+    // }
 
     // IF IMAGE IS A URL
     if (this.urlInput.value) {
@@ -96,17 +107,29 @@ class App extends Component {
       const reader = new FileReader();
       reader.readAsDataURL(file);
 
-      function convertBase64(response) {
+      const convertBase64 = response => {
         // console.log(reader.result);
         // response.target = reader.result
         const base64 = response.target.result.split('base64,')[1];
         console.log({ base64 });
-        fileAppSetState(base64);
 
-        console.log('this: ', this);
-        // `this` is FileReader, because convertBase64 is the onload handler, and onload is a method of reader, 
-        // and reader is an instance of FileReader. So you can't do this.setState here!!
-      }
+        console.log('convertBase64 - this: ', this);
+
+        // If convertBase64() is NOT an arrow function,
+        // `this` is FileReader, so you can NOT do this.setState here!!
+        // So create an arrow function inside searchHandler(), e.g. fileAppSetState(), and call it.
+        // e.g. fileAppSetState(base64);
+        // Why is `this` FileReader? Is it because convertBase64() is the onload handler,
+        // and onload is a method of `reader`, and `reader` is an instance of FileReader?
+
+        // If convertBase64() IS an arrow function, `this` will be App.
+        // So we CAN do this.setState() here.
+
+        this.setState({
+          url: { base64: base64 },
+          image: 'data:image/jpeg;base64, ' + base64
+        });
+      };
 
       // Use `onload` bc FileReader is async
       reader.onload = convertBase64;
@@ -176,7 +199,6 @@ class App extends Component {
           fileInputRef={input => (this.fileInput = input)}
           urlInputRef={input => (this.urlInput = input)}
         />
-        {/* <br/> */}
 
         <main>
           {this.state.finished ? (
@@ -184,7 +206,7 @@ class App extends Component {
           ) : (
             <span id="goal-message">You need to find a {this.state.goal}</span>
           )}
-          {/* <br /> */}
+
           {this.state.searching && <span>{this.state.searchingMessage}</span>}
           {!this.state.searching && this.state.searched && (
             <Checker
@@ -194,7 +216,7 @@ class App extends Component {
               remainingGoals={this.state.goals.length}
             />
           )}
-          {/* <br/><br/> */}
+
           {this.state.image && (
             <div id="searched-image">
               <img
@@ -205,7 +227,6 @@ class App extends Component {
             </div>
           )}
         </main>
-        {/* <br/> */}
 
         <footer>
           <p>&copy; {new Date().getFullYear()}. All Rights Reserved.</p>
