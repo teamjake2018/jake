@@ -19,7 +19,7 @@
     "normalize.css": "^8.0.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-scripts": "2.1.1"
+    "react-scripts": "5.0.1"
   },
   "devDependencies": {
     "husky": "^1.2.0",
